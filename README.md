@@ -16,7 +16,7 @@ Add the following to `composer.json`.
 ```json
 {
     "require": {
-            "dogyearm/coincheck"
+            "coincheck/coincheck"
         }
 }
 ```
@@ -31,4 +31,4 @@ See [Our homepage](http://coincheck.jp/).
 
 MIT
 
-Copyright (c) 2015 coincheck,  dogyearm.
+Copyright (c) 2015 coincheck.
