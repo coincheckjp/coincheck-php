@@ -16,7 +16,7 @@
     ],
     "require-dev": {
       "php": ">= 5.3.3",
-      "guzzle/guzzle": "3.*"
+      "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
       "psr-0": {
