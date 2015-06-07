@@ -28,35 +28,30 @@ require "vendor/autoload.php";
 use Coincheck\Coincheck;
 $coincheck= new Coincheck('API_SECRET');
 
-// 注文 Order
+// Order
 $coincheck->order->create(array(
       "rate"=> "30010.0",
       "amount"=> "1.3",
       "order_type"=> "sell",
       "pair"=> "btc_jpy"
       ));
-
 $coincheck->order->cancel(array(
    "id"=> "3333",
 ));
-
 $coincheck->order->opens();
-
 $coincheck->order->transactions();
 
-// 送金 Send
+// Send
 $coincheck->send->create(array(
       "address": "1v6zFvyNPgdRvhUufkRoTtgyiw1xigncc",
       "amount": "1.5"
       ));
 
-// アカウント情報 Account
+// Account
 $coincheck->account->balance();
-
 $coincheck->account->info();
 
-// 信用取引
-// 借入
+// Lending
 $coincheck->lending->borrows->create(array(
       "amount": "1.3",
       "currency": "BTC"
@@ -65,7 +60,6 @@ $coincheck->lending->borrows->list();
 $coincheck->lending->borrows->repay(array(
       "id": "222222"
       ));
-// 貸出
 $coincheck->lending->lend->create(array(
       "amount": "1.3",
       "currency": "BTC"
@@ -75,7 +69,6 @@ $coincheck->lending->lend->cancel(array(
       "id": "222222"
       ));
 $coincheck->lending->lend->matches();
-
 ```
 
 
