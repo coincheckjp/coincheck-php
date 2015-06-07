@@ -1,7 +1,7 @@
 <?php
 namespace Coincheck;
 
-class Account
+class Send
 {
     /** @var Coincheck */
     private $client;

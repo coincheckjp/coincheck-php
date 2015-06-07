@@ -1,0 +1,65 @@
+{
+  "name": "coincheck",
+  "apiVersion": "v1",
+  "baseUrl": "https://coincheck.jp/",
+  "operations": {
+    "order.create": {
+      "httpMethod": "POST",
+      "uri": "/api/exchange/orders",
+      "summary": "新規注文",
+      "parameters": {
+        "rate": {
+          "location": "postField",
+          "type": "integer",
+          "required": true,
+          "description": "注文のレート。（例）28000"
+        },
+        "amount": {
+          "location": "postField",
+          "type": "string",
+          "required": true,
+          "description": "注文での量。（例）0.1"
+        },
+        "order_type": {
+          "location": "postField",
+          "type": "string",
+          "required": true,
+          "description": "売りか買いかを指定。売りならば 'sell' 買いならば 'buy'"
+        },
+        "pair": {
+          "location": "postField",
+          "type": "string",
+          "required": true,
+          "description": "取引ペアを指定。現在は 'btc_jpy' のみです。"
+        }
+      }
+    },
+    "order.opens": {
+      "httpMethod": "GET",
+      "uri": "/api/exchange/orders/opens",
+      "summary": "未決済の注文一覧",
+      "parameters": {
+      }
+    },
+    "order.cancel": {
+      "httpMethod": "POST",
+      "uri": "/api/exchange/orders",
+      "summary": "注文のキャンセル",
+      "parameters": {
+        "id": {
+          "location": "postField",
+          "type": "integer",
+          "required": true,
+          "description": " 新規注文または未決済の注文一覧のID"
+        }
+      }
+    },
+    "order.opens": {
+      "httpMethod": "GET",
+      "uri": "/api/exchange/orders/transactions",
+      "summary": "取引履歴",
+      "parameters": {
+      }
+    }
+  }
+}

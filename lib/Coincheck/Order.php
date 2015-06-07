@@ -20,6 +20,13 @@ class Order
      */
     public function create($params = array())
     {
+        $arr = array(
+            "rate" => $params["rate"],
+            "amount" => $params["amount"],
+            "order_type" => $params["order_type"],
+            "pair" => $params["pair"]
+        );
+        $rawResponse = $this->client->request('post', 'order', $arr);
     }
 
     /**
@@ -39,7 +46,7 @@ class Order
      * @param  mixed
      * @return OrderIdRequest
      */
-    public function all($params = array())
+    public function opens($params = array())
     {
     }
 
@@ -49,7 +56,7 @@ class Order
      * @param  mixed
      * @return OrderIdRequest
      */
-    public function getOrderTransactions($params = array())
+    public function transactions($params = array())
     {
     }
 
