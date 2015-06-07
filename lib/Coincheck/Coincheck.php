@@ -53,9 +53,10 @@ class Coincheck
      */
     public function request($method, $path, $paramData)
     {
-        $this->client->setDefaultOption('headers/ACCESS-NONCE', "");
-        $this->client->setDefaultOption('headers/ACCESS-SIGNATURE', "");
+        //$this->client->setDefaultOption('headers/ACCESS-NONCE', "");
+        //$this->client->setDefaultOption('headers/ACCESS-SIGNATURE', "");
         $req = $this->client->createRequest($method, $path, array());
+        exit;
         $query = $req->getQuery();
         foreach ($paramData->queryParams() as $k => $v) {
             if ($v === null) continue;
