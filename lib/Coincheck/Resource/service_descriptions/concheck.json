@@ -10,7 +10,7 @@
       "parameters": {
         "rate": {
           "location": "postField",
-          "type": "integer",
+          "type": "string",
           "required": true,
           "description": "注文のレート。（例）28000"
         },

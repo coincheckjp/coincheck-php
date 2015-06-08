@@ -35,6 +35,21 @@ class Coincheck
         $this->marginTrading = new MarginTrading($this);
     }
 
+    public function __get($key)
+    {
+        $accessors = array('order', 'lending', 'account', 'event', 'marginTrading');
+        if (in_array($key, $accessors) && property_exists($this, $key)) {
+            return $this->{$key};
+        } else {
+            throw new \Exception('Unknown accessor ' . $key);
+        }
+    }
+
+    public function __set($key, $value)
+    {
+//        throw new \Exception($key . ' is not able to override');
+    }
+
     public function get_signature($url, $secret, $arr = array())
     {
         $nonce = time();
@@ -56,18 +71,18 @@ class Coincheck
         //$this->client->setDefaultOption('headers/ACCESS-NONCE', "");
         //$this->client->setDefaultOption('headers/ACCESS-SIGNATURE', "");
         $req = $this->client->createRequest($method, $path, array());
-        exit;
         $query = $req->getQuery();
-        foreach ($paramData->queryParams() as $k => $v) {
-            if ($v === null) continue;
-            $query->add($k, (is_bool($v)) ? ($v ? 'true' : 'false') : $v);
-        }
+        //foreach ($paramData->queryParams() as $k => $v) {
+        //    if ($v === null) continue;
+        //    $query->add($k, (is_bool($v)) ? ($v ? 'true' : 'false') : $v);
+        //}
         try {
             $res = $req->send();
             return $res->json();
         } catch (\Guzzle\Common\Exception\RuntimeException $e) {
-            throw ApiConnectionException::inRequest($e);
+            throw var_dump($e);
         }
     }
 
 }
+
