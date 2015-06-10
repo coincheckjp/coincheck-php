@@ -3,6 +3,7 @@ namespace Coincheck;
 
 use Guzzle\Common\Event as GuzzleEvent;
 use Guzzle\Service\Client as GuzzleClient;
+use Guzzle\Service\Description\ServiceDescription;
 
 class Coincheck
 {
@@ -11,12 +12,14 @@ class Coincheck
 
     /** @var Order */
     private $order;
-    /** @var Lending */
-    private $lending;
+    /** @var Send */
+    private $send;
+    /** @var Borrow */
+    private $borrow;
+    /** @var Lend */
+    private $lend;
     /** @var Account */
     private $account;
-    /** @var MarginTrading */
-    private $marginTrading;
 
     /**
      * @param array $options API options
@@ -27,17 +30,19 @@ class Coincheck
         $this->client = new GuzzleClient($apiBase);
         $this->client->setDefaultOption('headers/Content-Type', "application/json");
         $this->client->setDefaultOption('headers/ACCESS-KEY', $accessKey);
+        $description = ServiceDescription::factory(__DIR__ . "/Resource/service_descriptions/concheck.json");
+        $this->client->setDescription($description);
 
         $this->order = new Order($this);
         $this->send = new Send($this);
-        $this->lending = new Lending($this);
+        $this->lend = new Lend($this);
+        $this->borrow = new Borrow($this);
         $this->account = new Account($this);
-        $this->marginTrading = new MarginTrading($this);
     }
 
     public function __get($key)
     {
-        $accessors = array('order', 'lending', 'account', 'event', 'marginTrading');
+        $accessors = array('order', 'lend', 'borrow', 'send', 'account');
         if (in_array($key, $accessors) && property_exists($this, $key)) {
             return $this->{$key};
         } else {
@@ -47,42 +52,34 @@ class Coincheck
 
     public function __set($key, $value)
     {
-//        throw new \Exception($key . ' is not able to override');
+        throw new \Exception($key . ' is not able to override');
     }
 
-    public function get_signature($url, $secret, $arr = array())
+    public function setSignature($url, $apiSecret, $arr = array())
     {
         $nonce = time();
         $message = $nonce.$url.http_build_query($arr);
-        $signature = hash_hmac("sha256", $message, $secret);
+        $signature = hash_hmac("sha256", $message, $apiSecret);
+        $this->client->setDefaultOption('headers/ACCESS-NONCE', $nonce);
+        $this->client->setDefaultOption('headers/ACCESS-SIGNATURE', $signature);
     }
 
     /**
      * Dispatch API request
      *
-     * @param string $method    HTTP method
-     * @param string $path      Target path relative to base_url option value
+     * @param string $operation Target action
      * @param object $paramData Request data
      *
-     * @return mixed Response object
      */
-    public function request($method, $path, $paramData)
+    public function request($operation, $paramData)
     {
-        //$this->client->setDefaultOption('headers/ACCESS-NONCE', "");
-        //$this->client->setDefaultOption('headers/ACCESS-SIGNATURE', "");
-        $req = $this->client->createRequest($method, $path, array());
-        $query = $req->getQuery();
-        //foreach ($paramData->queryParams() as $k => $v) {
-        //    if ($v === null) continue;
-        //    $query->add($k, (is_bool($v)) ? ($v ? 'true' : 'false') : $v);
-        //}
+        $this->setSignature('https://coincheck.jp/'.'api/exchange/orders/transactions', 'SECRET_KEY' ,$paramData);
+        $command = $this->client->getCommand($operation, $paramData);
         try {
-            $res = $req->send();
-            return $res->json();
+            $res = $this->client->execute($command);
+            echo json_encode($res);
         } catch (\Guzzle\Common\Exception\RuntimeException $e) {
             throw var_dump($e);
         }
     }
-
 }
-

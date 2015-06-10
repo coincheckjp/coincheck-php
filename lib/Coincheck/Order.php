@@ -26,7 +26,7 @@ class Order
             "order_type" => $params["order_type"],
             "pair" => $params["pair"]
         );
-        $rawResponse = $this->client->request('post', 'order', $arr);
+        $this->client->request('order.transactions', $arr);
     }
 
     /**
@@ -38,6 +38,8 @@ class Order
      */
     public function cancel($params = array())
     {
+        $arr = array( "id" => $params["id"]);
+        $this->client->request('order.cancel', $arr);
     }
 
     /**
@@ -48,6 +50,8 @@ class Order
      */
     public function opens($params = array())
     {
+        $arr = array();
+        $this->client->request('order.opens', $arr);
     }
 
     /**
@@ -58,6 +62,8 @@ class Order
      */
     public function transactions($params = array())
     {
+        $arr = array();
+        $this->client->request('order.transactions', $arr);
     }
 
 }

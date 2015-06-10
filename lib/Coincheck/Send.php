@@ -10,4 +10,19 @@ class Send
     {
         $this->client = $client;
     }
+
+    /**
+     * Sending Bitcoin to specified Bitcoin addres.
+     *
+     * @param  mixed
+     * @return Json Array
+     */
+    public function create($params = array())
+    {
+        $arr = array(
+            "address" => $params["address"],
+            "amount" => $params["amount"]
+        );
+        $this->client->request('send.create', $arr);
+    }
 }
