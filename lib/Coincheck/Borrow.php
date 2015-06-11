@@ -44,9 +44,9 @@ class Borrow
      * @param  mixed
      * @return Json Array
      */
-    public function replay($params = array())
+    public function repay($params = array())
     {
         $arr = array( "id" => $params["id"]);
-        $this->client->request('borrow.replay', $arr);
+        $this->client->request('borrow.repay','api/lending/borrows/'.$arr['id'].'/repay',  $arr);
     }
 }
