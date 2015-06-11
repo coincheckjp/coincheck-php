@@ -32,7 +32,7 @@ $coincheck= new Coincheck('API_SECRET');
 
 $coincheck->ticker->all();
 $coincheck->trade->all();
-$coincheck->orderBook->all());
+$coincheck->orderBook->all();
 
 /** Private API */
 
