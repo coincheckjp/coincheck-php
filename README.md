@@ -23,52 +23,52 @@ Add the following to `composer.json`.
 
 ## Usage
 
-```
+```php
 require "vendor/autoload.php";
 use Coincheck\Coincheck;
 $coincheck= new Coincheck('API_SECRET');
 
-// Order
+/** Public API */
+
+$coincheck->ticker->all(array());
+$coincheck->trade->all(array());
+$coincheck->orderBook->all(array());
+
+/** Private API */
+
 $coincheck->order->create(array(
-      "rate"=> "30010.0",
-      "amount"=> "1.3",
-      "order_type"=> "sell",
-      "pair"=> "btc_jpy"
-      ));
-$coincheck->order->cancel(array(
-   "id"=> "3333",
+    "rate" => "28500",
+    "amount" => "0.00508771",
+    "order_type" => "buy",
+    "pair" => "btc_jpy"
 ));
 $coincheck->order->opens();
-$coincheck->order->transactions();
+$coincheck->order->transactions(array());
+$coincheck->order->cancel(array( "id" => 2953613)); # 未実装
 
-// Send
-$coincheck->send->create(array(
-      "address": "1v6zFvyNPgdRvhUufkRoTtgyiw1xigncc",
-      "amount": "1.5"
-      ));
-
-// Account
 $coincheck->account->balance();
-$coincheck->account->info();
+$coincheck->account->info(array());
 
-// Lending
-$coincheck->lending->borrows->create(array(
-      "amount": "1.3",
-      "currency": "BTC"
-      ));
-$coincheck->lending->borrows->list();
-$coincheck->lending->borrows->repay(array(
-      "id": "222222"
-      ));
-$coincheck->lending->lend->create(array(
-      "amount": "1.3",
-      "currency": "BTC"
-      ));
-$coincheck->lending->lend->pendings();
-$coincheck->lending->lend->cancel(array(
-      "id": "222222"
-      ));
-$coincheck->lending->lend->matches();
+$coincheck->send->create(array(
+    "address" => '1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY',
+    "amount" => '0.0002'
+));
+
+$coincheck->borrow->create(array(
+    "amount" => "0.01",
+    "currency" => "BTC"
+));
+$coincheck->borrow->matches();
+$coincheck->borrow->repay(array("id" => "1135")); # 未実装
+
+$coincheck->lend->create(array( # 未実装
+    "amount" => "0.01",
+    "currency" => "BTC"
+));
+$coincheck->lend->cancel(array("id" => "1363")); # 未実装
+$coincheck->lend->pendings();
+$coincheck->lend->matches();
+
 ```
 
 
