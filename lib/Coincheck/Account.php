@@ -33,6 +33,6 @@ class Account
     public function info($params = array())
     {
         $arr = array();
-        $this->client->request('account.info', 'api/accounts/balance', $arr);
+        $this->client->request('account.info', 'api/accounts', $arr);
     }
 }

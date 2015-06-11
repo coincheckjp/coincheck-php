@@ -63,8 +63,8 @@
       }
     },
     "order.cancel": {
-      "httpMethod": "POST",
-      "uri": "/api/exchange/orders",
+      "httpMethod": "DELETE",
+      "uri": "/api/exchange/orders/{id}",
       "summary": "注文のキャンセル",
       "parameters": {
         "id": {

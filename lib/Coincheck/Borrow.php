@@ -23,7 +23,7 @@ class Borrow
             "amount" => $params["amount"],
             "currency" => $params["currency"]
         );
-        $this->client->request('borrow.create', $arr);
+        $this->client->request('borrow.create', 'api/lending/borrows', $arr);
     }
 
     /**
@@ -32,10 +32,10 @@ class Borrow
      * @param  mixed
      * @return Json Array
      */
-    public function _list($params = array())
+    public function matches($params = array())
     {
         $arr = array();
-        $this->client->request('borrow.list', $arr);
+        $this->client->request('borrow.matches', 'api/lending/borrows/matches',  $arr);
     }
 
     /**
