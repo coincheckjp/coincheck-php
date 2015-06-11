@@ -5,28 +5,28 @@
   "operations": {
     "ticker": {
       "httpMethod": "GET",
-      "uri": "/api/ticker",
+      "uri": "api/ticker",
       "summary": "各種最新情報を簡易に取得することができます。",
       "parameters": {
       }
     },
     "trade": {
       "httpMethod": "GET",
-      "uri": "/api/trades",
+      "uri": "api/trades",
       "summary": "最新の取引履歴を取得できます。",
       "parameters": {
       }
     },
     "orderBook": {
       "httpMethod": "GET",
-      "uri": "/api/order_books",
+      "uri": "api/order_books",
       "summary": "板情報を取得できます。",
       "parameters": {
       }
     },
     "order.create": {
       "httpMethod": "POST",
-      "uri": "/api/exchange/orders",
+      "uri": "api/exchange/orders",
       "summary": "新規注文",
       "parameters": {
         "rate": {
@@ -57,19 +57,19 @@
     },
     "order.opens": {
       "httpMethod": "GET",
-      "uri": "/api/exchange/orders/opens",
+      "uri": "api/exchange/orders/opens",
       "summary": "未決済の注文一覧",
       "parameters": {
       }
     },
     "order.cancel": {
       "httpMethod": "DELETE",
-      "uri": "/api/exchange/orders/{id}",
+      "uri": "api/exchange/orders/{id}",
       "summary": "注文のキャンセル",
       "parameters": {
         "id": {
           "location": "postField",
-          "type": "integer",
+          "type": "string",
           "required": true,
           "description": " 新規注文または未決済の注文一覧のID"
         }
@@ -77,28 +77,28 @@
     },
     "order.transactions": {
       "httpMethod": "GET",
-      "uri": "/api/exchange/orders/transactions",
+      "uri": "api/exchange/orders/transactions",
       "summary": "取引履歴",
       "parameters": {
       }
     },
     "account.balance": {
       "httpMethod": "GET",
-      "uri": "/api/accounts/balance",
+      "uri": "api/accounts/balance",
       "summary": "残高",
       "parameters": {
       }
     },
     "account.info": {
       "httpMethod": "GET",
-      "uri": "/api/accounts",
+      "uri": "api/accounts",
       "summary": "アカウント情報",
       "parameters": {
       }
     },
     "send.create": {
       "httpMethod": "POST",
-      "uri": "/api/send_money",
+      "uri": "api/send_money",
       "summary": "ビットコインの送金",
       "parameters": {
         "address": {
@@ -117,7 +117,7 @@
     },
     "lend.create": {
       "httpMethod": "POST",
-      "uri": "/api/lending/lend",
+      "uri": "api/lending/lend",
       "summary": "貸出の申請をします。",
       "parameters": {
         "amount": {
@@ -136,14 +136,14 @@
     },
     "lend.pendings": {
       "httpMethod": "GET",
-      "uri": "/api/lending/lends",
+      "uri": "api/lending/lends",
       "summary": "貸出を申請しているが、借りたい人がおらず未約定の状態となっている申請一覧を表示します。",
       "parameters": {
       }
     },
     "lend.cancel": {
       "httpMethod": "POST",
-      "uri": "/api/lending/lend/{id}/cancel",
+      "uri": "api/lending/lend/{id}/cancel",
       "summary": "注文のキャンセル",
       "parameters": {
         "id": {
@@ -156,14 +156,14 @@
     },
     "lend.matches": {
       "httpMethod": "GET",
-      "uri": "/api/lending/lends/matches",
+      "uri": "api/lending/lends/matches",
       "summary": "注文のキャンセル",
       "parameters": {
       }
     },
     "borrow.create": {
       "httpMethod": "POST",
-      "uri": "/api/lending/borrows",
+      "uri": "api/lending/borrows",
       "summary": "借入の申請をします。",
       "parameters": {
         "amount": {
@@ -182,14 +182,14 @@
     },
     "borrow.matches": {
       "httpMethod": "GET",
-      "uri": "/api/lending/borrows/matches",
+      "uri": "api/lending/borrows/matches",
       "summary": "借り入れしている通貨の一覧を表示します。",
       "parameters": {
       }
     },
     "borrow.repay": {
       "httpMethod": "POST",
-      "uri": "/api/lending/borrows/{id}/repay",
+      "uri": "api/lending/borrows/{id}/repay",
       "summary": "この id を元に返却をすることができます。",
       "parameters": {
         "id": {

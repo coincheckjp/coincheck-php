@@ -20,7 +20,8 @@ class OrderBook
     public function all($params = array())
     {
         $arr = array();
-        $this->client->request('orderBook', 'api/order_books', $arr);
+        $rawResponse = $this->client->request('orderBook', $arr);
+        return $rawResponse;
     }
 
 }

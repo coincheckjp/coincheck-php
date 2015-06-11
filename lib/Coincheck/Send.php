@@ -23,6 +23,7 @@ class Send
             "address" => $params["address"],
             "amount" => $params["amount"]
         );
-        $this->client->request('send.create', 'api/send_money', $arr);
+        $rawResponse = $this->client->request('send.create', $arr);
+        return $rawResponse;
     }
 }

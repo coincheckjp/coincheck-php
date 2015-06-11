@@ -23,7 +23,8 @@ class Borrow
             "amount" => $params["amount"],
             "currency" => $params["currency"]
         );
-        $this->client->request('borrow.create', 'api/lending/borrows', $arr);
+        $rawResponse = $this->client->request('borrow.create', $arr);
+        return $rawResponse;
     }
 
     /**
@@ -35,7 +36,8 @@ class Borrow
     public function matches($params = array())
     {
         $arr = array();
-        $this->client->request('borrow.matches', 'api/lending/borrows/matches',  $arr);
+        $rawResponse = $this->client->request('borrow.matches', $arr);
+        return $rawResponse;
     }
 
     /**
@@ -47,6 +49,7 @@ class Borrow
     public function repay($params = array())
     {
         $arr = array( "id" => $params["id"]);
-        $this->client->request('borrow.repay','api/lending/borrows/'.$arr['id'].'/repay',  $arr);
+        $rawResponse = $this->client->request('borrow.repay', $arr);
+        return $rawResponse;
     }
 }

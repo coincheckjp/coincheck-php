@@ -20,7 +20,8 @@ class Ticker
     public function all($params = array())
     {
         $arr = array();
-        $this->client->request('ticker', 'api/ticker', $arr);
+        $rawResponse = $this->client->request('ticker', $arr);
+        return $rawResponse;
     }
 
 }

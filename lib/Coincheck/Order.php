@@ -26,7 +26,8 @@ class Order
             "order_type" => $params["order_type"],
             "pair" => $params["pair"]
         );
-        $this->client->request('order.create', 'api/exchange/orders', $arr);
+        $rawResponse = $this->client->request('order.create', $arr);
+        return $rawResponse;
     }
 
     /**
@@ -39,7 +40,8 @@ class Order
     public function cancel($params = array())
     {
         $arr = array( "id" => $params["id"]);
-        $this->client->request('order.cancel', 'api/exchange/orders/'.$arr["id"], $arr);
+        $rawResponse = $this->client->request('order.cancel', $arr);
+        return $rawResponse;
     }
 
     /**
@@ -51,7 +53,8 @@ class Order
     public function opens($params = array())
     {
         $arr = array();
-        $this->client->request('order.opens', 'api/exchange/orders/opens', $arr);
+        $rawResponse = $this->client->request('order.opens', $arr);
+        return $rawResponse;
     }
 
     /**
@@ -63,7 +66,8 @@ class Order
     public function transactions($params = array())
     {
         $arr = array();
-        $this->client->request('order.transactions', 'api/exchange/orders/transactions', $arr);
+        $rawResponse = $this->client->request('order.transactions', $arr);
+        return $rawResponse;
     }
 
 }

@@ -92,13 +92,15 @@ class Coincheck
      * @param object $paramData Request data
      *
      */
-    public function request($operation, $path, $paramData)
+    public function request($operation, $paramData)
     {
+        $path = $this->client->getDescription()->getOperation($operation)->getUri();
         $this->setSignature($path, $paramData);
         $command = $this->client->getCommand($operation, $paramData);
+
         try {
             $res = $this->client->execute($command);
-            echo json_encode($res);
+            return $res;
         } catch (\Guzzle\Common\Exception\RuntimeException $e) {
             throw var_dump($e);
         }
