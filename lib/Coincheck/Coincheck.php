@@ -10,6 +10,10 @@ class Coincheck
     /** @var GuzzleClient */
     private $client;
 
+    public $apiBase;
+    public $accessKey;
+    public $secretKey;
+
     /** @var Order */
     private $order;
     /** @var Send */
@@ -24,12 +28,15 @@ class Coincheck
     /**
      * @param array $options API options
      */
-    public function __construct($accessKey, $apiSecret, $options = array())
+    public function __construct($accessKey, $secretKey, $options = array())
     {
-        $apiBase = 'https://coincheck.jp/';
-        $this->client = new GuzzleClient($apiBase);
+        $this->apiBase = 'https://coincheck.jp/';
+        $this->accessKey = $accessKey;
+        $this->secretKey = $secretKey;
+
+        $this->client = new GuzzleClient($this->apiBase);
         $this->client->setDefaultOption('headers/Content-Type', "application/json");
-        $this->client->setDefaultOption('headers/ACCESS-KEY', $accessKey);
+        $this->client->setDefaultOption('headers/ACCESS-KEY', $this->accessKey);
         $description = ServiceDescription::factory(__DIR__ . "/Resource/service_descriptions/concheck.json");
         $this->client->setDescription($description);
 
@@ -55,11 +62,12 @@ class Coincheck
         throw new \Exception($key . ' is not able to override');
     }
 
-    public function setSignature($url, $apiSecret, $arr = array())
+    public function setSignature($path, $arr = array())
     {
         $nonce = time();
+        $url = $this->apiBase.$path;
         $message = $nonce.$url.http_build_query($arr);
-        $signature = hash_hmac("sha256", $message, $apiSecret);
+        $signature = hash_hmac("sha256", $message, $this->secretKey);
         $this->client->setDefaultOption('headers/ACCESS-NONCE', $nonce);
         $this->client->setDefaultOption('headers/ACCESS-SIGNATURE', $signature);
     }
@@ -71,9 +79,9 @@ class Coincheck
      * @param object $paramData Request data
      *
      */
-    public function request($operation, $paramData)
+    public function request($operation, $path, $paramData)
     {
-        $this->setSignature('https://coincheck.jp/'.'api/exchange/orders/transactions', 'SECRET_KEY' ,$paramData);
+        $this->setSignature( $path, $paramData);
         $command = $this->client->getCommand($operation, $paramData);
         try {
             $res = $this->client->execute($command);

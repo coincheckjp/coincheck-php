@@ -63,7 +63,7 @@ class Order
     public function transactions($params = array())
     {
         $arr = array();
-        $this->client->request('order.transactions', $arr);
+        $this->client->request('order.transactions', 'api/exchange/orders/transactions', $arr);
     }
 
 }
