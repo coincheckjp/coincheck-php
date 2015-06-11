@@ -30,9 +30,9 @@ $coincheck= new Coincheck('API_SECRET');
 
 /** Public API */
 
-$coincheck->ticker->all(array());
-$coincheck->trade->all(array());
-$coincheck->orderBook->all(array());
+$coincheck->ticker->all();
+$coincheck->trade->all();
+$coincheck->orderBook->all());
 
 /** Private API */
 
@@ -43,7 +43,7 @@ $coincheck->order->create(array(
     "pair" => "btc_jpy"
 ));
 $coincheck->order->opens();
-$coincheck->order->transactions(array());
+$coincheck->order->transactions();
 $coincheck->order->cancel(array( "id" => 2953613)); # 未実装
 
 $coincheck->account->balance();
