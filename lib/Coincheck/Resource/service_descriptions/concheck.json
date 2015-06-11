@@ -68,8 +68,7 @@
       "summary": "注文のキャンセル",
       "parameters": {
         "id": {
-          "location": "postField",
-          "type": "string",
+          "location": "uri",
           "required": true,
           "description": " 新規注文または未決済の注文一覧のID"
         }
@@ -147,8 +146,8 @@
       "summary": "注文のキャンセル",
       "parameters": {
         "id": {
-          "location": "postField",
-          "type": "integer",
+          "location": "uri",
+          "type": "string",
           "required": true,
           "description": " 未約定の貸出の一覧のID"
         }
@@ -193,8 +192,8 @@
       "summary": "この id を元に返却をすることができます。",
       "parameters": {
         "id": {
-          "location": "postField",
-          "type": "integer",
+          "location": "uri",
+          "type": "string",
           "required": true,
           "description": " 新規注文または未決済の注文一覧のID"
         }

@@ -26,7 +26,7 @@ Add the following to `composer.json`.
 ```php
 require "vendor/autoload.php";
 use Coincheck\Coincheck;
-$coincheck= new Coincheck('API_SECRET');
+$coincheck= new Coincheck('ACCESS_KEY', 'API_SECRET');
 
 /** Public API */
 
@@ -73,6 +73,8 @@ $coincheck->lend->matches();
 
 
 ## Dependencies
+
+* [guzzle](http://docs.guzzlephp.org/en/latest/) as a HTTP client
 
 ## License
 MIT
