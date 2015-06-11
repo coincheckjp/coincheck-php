@@ -14,6 +14,13 @@ class Coincheck
     public $accessKey;
     public $secretKey;
 
+    /** @var Ticker */
+    private $ticker;
+    /** @var $Trade */
+    private $trade;
+    /** @var OrderBooks */
+    private $orderBook;
+
     /** @var Order */
     private $order;
     /** @var Send */
@@ -40,6 +47,12 @@ class Coincheck
         $description = ServiceDescription::factory(__DIR__ . "/Resource/service_descriptions/concheck.json");
         $this->client->setDescription($description);
 
+        /** Public API */
+        $this->ticker = new Ticker($this);
+        $this->trade = new Trade($this);
+        $this->orderBook = new OrderBook($this);
+
+        /** Private API */
         $this->order = new Order($this);
         $this->send = new Send($this);
         $this->lend = new Lend($this);
@@ -49,7 +62,7 @@ class Coincheck
 
     public function __get($key)
     {
-        $accessors = array('order', 'lend', 'borrow', 'send', 'account');
+        $accessors = array('ticker', 'trade','orderBook', 'order', 'lend', 'borrow', 'send', 'account');
         if (in_array($key, $accessors) && property_exists($this, $key)) {
             return $this->{$key};
         } else {
@@ -81,7 +94,7 @@ class Coincheck
      */
     public function request($operation, $path, $paramData)
     {
-        $this->setSignature( $path, $paramData);
+        $this->setSignature($path, $paramData);
         $command = $this->client->getCommand($operation, $paramData);
         try {
             $res = $this->client->execute($command);

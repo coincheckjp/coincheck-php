@@ -20,7 +20,7 @@ class Account
     public function balance($params = array())
     {
         $arr = array();
-        $this->client->request('account.balance', $arr);
+        $this->client->request('account.balance', 'api/accounts/balance', $arr);
     }
 
     /**
@@ -33,6 +33,6 @@ class Account
     public function info($params = array())
     {
         $arr = array();
-        $this->client->request('account.info', $arr);
+        $this->client->request('account.info', 'api/accounts/balance', $arr);
     }
 }

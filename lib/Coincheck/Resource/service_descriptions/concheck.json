@@ -3,6 +3,27 @@
   "apiVersion": "v1",
   "baseUrl": "https://coincheck.jp/",
   "operations": {
+    "ticker": {
+      "httpMethod": "GET",
+      "uri": "/api/ticker",
+      "summary": "各種最新情報を簡易に取得することができます。",
+      "parameters": {
+      }
+    },
+    "trade": {
+      "httpMethod": "GET",
+      "uri": "/api/trades",
+      "summary": "最新の取引履歴を取得できます。",
+      "parameters": {
+      }
+    },
+    "orderBook": {
+      "httpMethod": "GET",
+      "uri": "/api/order_books",
+      "summary": "板情報を取得できます。",
+      "parameters": {
+      }
+    },
     "order.create": {
       "httpMethod": "POST",
       "uri": "/api/exchange/orders",
@@ -68,7 +89,7 @@
       "parameters": {
       }
     },
-    "account.balance": {
+    "account.info": {
       "httpMethod": "GET",
       "uri": "/api/accounts",
       "summary": "アカウント情報",

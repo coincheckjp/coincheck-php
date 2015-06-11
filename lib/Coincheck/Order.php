@@ -26,7 +26,7 @@ class Order
             "order_type" => $params["order_type"],
             "pair" => $params["pair"]
         );
-        $this->client->request('order.transactions', $arr);
+        $this->client->request('order.create', $arr);
     }
 
     /**
@@ -51,7 +51,7 @@ class Order
     public function opens($params = array())
     {
         $arr = array();
-        $this->client->request('order.opens', $arr);
+        $this->client->request('order.opens', 'api/exchange/orders/opens', $arr);
     }
 
     /**
