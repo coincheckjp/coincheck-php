@@ -44,8 +44,8 @@ class Coincheck
         $this->client = new GuzzleClient($this->apiBase);
         $this->client->setDefaultOption('headers/Content-Type', "application/json");
         $this->client->setDefaultOption('headers/ACCESS-KEY', $this->accessKey);
-        $description = ServiceDescription::factory(__DIR__ . "/Resource/service_descriptions/concheck.json");
-        $this->client->setDescription($description);
+        //$description = ServiceDescription::factory(__DIR__ . "/Resource/service_descriptions/concheck.json");
+        //$this->client->setDescription($description);
 
         /** Public API */
         $this->ticker = new Ticker($this);
@@ -92,17 +92,19 @@ class Coincheck
      * @param object $paramData Request data
      *
      */
-    public function request($operation, $paramData)
+    public function request($method, $path, $paramData)
     {
-        $path = $this->client->getDescription()->getOperation($operation)->getUri();
         $this->setSignature($path, $paramData);
-        $command = $this->client->getCommand($operation, $paramData);
-
+        $req = $this->client->createRequest($method, $path, array());
+        foreach ($paramData as $k => $v) {
+            $req->setPostField($k, $v);
+        }
+        $query = $req->getQuery();
         try {
-            $res = $this->client->execute($command);
-            return $res;
+            $res = $req->send();
+            return $res->json();
         } catch (\Guzzle\Common\Exception\RuntimeException $e) {
-            throw var_dump($e);
+            echo $e->getResponse()->getBody();
         }
     }
 }

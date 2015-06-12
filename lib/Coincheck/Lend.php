@@ -23,7 +23,7 @@ class Lend
             "amount" => $params["amount"],
             "currency" => $params["currency"]
         );
-        $rawResponse = $this->client->request('lend.create', $arr);
+        $rawResponse = $this->client->request('post', 'api/lending/lend', $arr);
         return $rawResponse;
     }
 
@@ -36,7 +36,7 @@ class Lend
     public function pendings($params = array())
     {
         $arr = array();
-        $rawResponse = $this->client->request('lend.pendings', $arr);
+        $rawResponse = $this->client->request('get', 'api/lending/lends', $arr);
         return $rawResponse;
     }
 
@@ -49,7 +49,7 @@ class Lend
     public function cancel($params = array())
     {
         $arr = array( "id" => $params["id"]);
-        $rawResponse = $this->client->request('lend.cancel', $arr);
+        $rawResponse = $this->client->request('post', 'api/lending/lend/' . $arr['id'] . '/cancel', $arr);
         return $rawResponse;
     }
 
@@ -62,7 +62,7 @@ class Lend
     public function matches($params = array())
     {
         $arr = array();
-        $rawResponse = $this->client->request('lend.matches', $arr);
+        $rawResponse = $this->client->request('get', 'api/lending/lends/matches', $arr);
         return $rawResponse;
     }
 }

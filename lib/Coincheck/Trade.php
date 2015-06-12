@@ -20,7 +20,7 @@ class Trade
     public function all($params = array())
     {
         $arr = array();
-        $rawResponse = $this->client->request('trade', $arr);
+        $rawResponse = $this->client->request('get', 'api/trades', $arr);
         return $rawResponse;
     }
 

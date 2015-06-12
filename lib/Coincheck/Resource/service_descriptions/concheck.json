@@ -69,6 +69,7 @@
       "parameters": {
         "id": {
           "location": "uri",
+          "type": "string",
           "required": true,
           "description": " 新規注文または未決済の注文一覧のID"
         }
@@ -193,6 +194,12 @@
       "parameters": {
         "id": {
           "location": "uri",
+          "type": "string",
+          "required": true,
+          "description": " 新規注文または未決済の注文一覧のID"
+        },
+        "id": {
+          "location": "postField",
           "type": "string",
           "required": true,
           "description": " 新規注文または未決済の注文一覧のID"
