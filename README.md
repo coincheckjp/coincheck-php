@@ -44,7 +44,7 @@ $coincheck->order->create(array(
 ));
 $coincheck->order->opens();
 $coincheck->order->transactions();
-$coincheck->order->cancel(array( "id" => 2953613)); # 未実装
+$coincheck->order->cancel(array( "id" => 2953613));
 
 $coincheck->account->balance();
 $coincheck->account->info(array());
@@ -59,13 +59,13 @@ $coincheck->borrow->create(array(
     "currency" => "BTC"
 ));
 $coincheck->borrow->matches();
-$coincheck->borrow->repay(array("id" => "1135")); # 未実装
+$coincheck->borrow->repay(array("id" => "1135"));
 
-$coincheck->lend->create(array( # 未実装
+$coincheck->lend->create(array(
     "amount" => "0.01",
     "currency" => "BTC"
 ));
-$coincheck->lend->cancel(array("id" => "1363")); # 未実装
+$coincheck->lend->cancel(array("id" => "1363"));
 $coincheck->lend->pendings();
 $coincheck->lend->matches();
 

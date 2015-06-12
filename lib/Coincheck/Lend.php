@@ -23,7 +23,7 @@ class Lend
             "amount" => $params["amount"],
             "currency" => $params["currency"]
         );
-        $rawResponse = $this->client->request('post', 'api/lending/lend', $arr);
+        $rawResponse = $this->client->request('post', 'api/lending/lends', $arr);
         return $rawResponse;
     }
 
@@ -49,7 +49,7 @@ class Lend
     public function cancel($params = array())
     {
         $arr = array( "id" => $params["id"]);
-        $rawResponse = $this->client->request('post', 'api/lending/lend/' . $arr['id'] . '/cancel', $arr);
+        $rawResponse = $this->client->request('post', 'api/lending/lends/' . $arr['id'] . '/cancel', $arr);
         return $rawResponse;
     }
 
