@@ -31,6 +31,10 @@ $res = $coincheck->send->create(array(
     "address" => '1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY',
     "amount" => '0.0002'
 ));
+$coincheck->send->all();
+
+$coincheck->deposit->all();
+
 $res = $coincheck->borrow->create(array(
     "amount" => "0.01",
     "currency" => "BTC"

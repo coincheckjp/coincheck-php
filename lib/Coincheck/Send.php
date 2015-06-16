@@ -26,4 +26,17 @@ class Send
         $rawResponse = $this->client->request('post', 'api/send_money', $arr);
         return $rawResponse;
     }
+
+    /**
+     * You Get Send history
+     *
+     * @param  mixed
+     * @return Json Array
+     */
+    public function all($params = array())
+    {
+        $arr = array();
+        $rawResponse = $this->client->request('get', 'api/sends', $arr);
+        return $rawResponse;
+    }
 }

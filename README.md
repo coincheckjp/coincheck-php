@@ -16,7 +16,7 @@ Add the following to `composer.json`.
 ```json
 {
     "require": {
-        "coincheck/coincheck": "1.0.0"
+        "coincheck/coincheck": "1.0.2"
     }
 }
 ```
@@ -53,6 +53,9 @@ $coincheck->send->create(array(
     "address" => '1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY',
     "amount" => '0.0002'
 ));
+$coincheck->send->all();
+
+$coincheck->deposit->all();
 
 $coincheck->borrow->create(array(
     "amount" => "0.01",

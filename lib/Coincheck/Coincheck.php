@@ -25,6 +25,8 @@ class Coincheck
     private $order;
     /** @var Send */
     private $send;
+    /** @var Deposit */
+    private $deposit;
     /** @var Borrow */
     private $borrow;
     /** @var Lend */
@@ -44,8 +46,6 @@ class Coincheck
         $this->client = new GuzzleClient($this->apiBase);
         $this->client->setDefaultOption('headers/Content-Type', "application/json");
         $this->client->setDefaultOption('headers/ACCESS-KEY', $this->accessKey);
-        //$description = ServiceDescription::factory(__DIR__ . "/Resource/service_descriptions/concheck.json");
-        //$this->client->setDescription($description);
 
         /** Public API */
         $this->ticker = new Ticker($this);
@@ -55,6 +55,7 @@ class Coincheck
         /** Private API */
         $this->order = new Order($this);
         $this->send = new Send($this);
+        $this->deposit = new Deposit($this);
         $this->lend = new Lend($this);
         $this->borrow = new Borrow($this);
         $this->account = new Account($this);
@@ -62,7 +63,7 @@ class Coincheck
 
     public function __get($key)
     {
-        $accessors = array('ticker', 'trade','orderBook', 'order', 'lend', 'borrow', 'send', 'account');
+        $accessors = array('ticker', 'trade','orderBook', 'order', 'lend', 'borrow', 'send', 'deposit', 'account');
         if (in_array($key, $accessors) && property_exists($this, $key)) {
             return $this->{$key};
         } else {
