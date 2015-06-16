@@ -20,7 +20,7 @@ class Deposit
     public function all($params = array())
     {
         $arr = array();
-        $rawResponse = $this->client->request('get', 'api/deposits', $arr);
+        $rawResponse = $this->client->request('get', 'api/deposit_money', $arr);
         return $rawResponse;
     }
 }

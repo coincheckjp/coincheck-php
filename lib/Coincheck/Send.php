@@ -36,7 +36,7 @@ class Send
     public function all($params = array())
     {
         $arr = array();
-        $rawResponse = $this->client->request('get', 'api/sends', $arr);
+        $rawResponse = $this->client->request('get', 'api/send_money', $arr);
         return $rawResponse;
     }
 }
