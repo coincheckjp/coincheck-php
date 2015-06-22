@@ -95,7 +95,7 @@ class Coincheck
      */
     public function request($method, $path, $paramData)
     {
-        if($method == 'get') {
+        if($method == 'get' && count($paramData) > 0) {
             $path = $path . '?';
             foreach ($paramData as $k => $v) {
                 $path .= $k.'='.$v;
