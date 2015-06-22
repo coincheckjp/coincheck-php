@@ -95,12 +95,20 @@ class Coincheck
      */
     public function request($method, $path, $paramData)
     {
+        if($method == 'get') {
+            $path = $path . '?';
+            foreach ($paramData as $k => $v) {
+                $path .= $k.'='.$v;
+            }
+            $paramData=array();
+        }
         $this->setSignature($path, $paramData);
         $req = $this->client->createRequest($method, $path, array());
-        foreach ($paramData as $k => $v) {
-            $req->setPostField($k, $v);
+        if($method == 'post' || $method == 'delete') {
+            foreach ($paramData as $k => $v) {
+                $req->setPostField($k, $v);
+            }
         }
-        $query = $req->getQuery();
         try {
             $res = $req->send();
             return $res->json();

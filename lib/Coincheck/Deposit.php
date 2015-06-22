@@ -19,7 +19,9 @@ class Deposit
      */
     public function all($params = array())
     {
-        $arr = array();
+        $arr = array(
+            "currency" => $params["currency"]
+        );
         $rawResponse = $this->client->request('get', 'api/deposit_money', $arr);
         return $rawResponse;
     }
