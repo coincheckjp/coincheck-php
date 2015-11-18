@@ -33,6 +33,8 @@ class Coincheck
     private $lend;
     /** @var Account */
     private $account;
+    /** @var BankAccount */
+    private $bank_account;
 
     /**
      * @param array $options API options
@@ -59,11 +61,12 @@ class Coincheck
         $this->lend = new Lend($this);
         $this->borrow = new Borrow($this);
         $this->account = new Account($this);
+        $this->bank_account = new BankAccount($this);
     }
 
     public function __get($key)
     {
-        $accessors = array('ticker', 'trade','orderBook', 'order', 'lend', 'borrow', 'send', 'deposit', 'account');
+        $accessors = array('ticker', 'trade','orderBook', 'order', 'lend', 'borrow', 'send', 'deposit', 'account', 'bank_account');
         if (in_array($key, $accessors) && property_exists($this, $key)) {
             return $this->{$key};
         } else {
