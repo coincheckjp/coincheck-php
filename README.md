@@ -16,7 +16,7 @@ Add the following to `composer.json`.
 ```json
 {
     "require": {
-        "coincheck/coincheck": "1.0.2"
+        "coincheck/coincheck": "1.1.0"
     }
 }
 ```
