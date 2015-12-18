@@ -115,52 +115,6 @@
         }
       }
     },
-    "lend.create": {
-      "httpMethod": "POST",
-      "uri": "api/lending/lend",
-      "summary": "貸出の申請をします。",
-      "parameters": {
-        "amount": {
-          "location": "postField",
-          "type": "string",
-          "required": true,
-          "description": "貸したい量"
-        },
-        "currency": {
-          "location": "postField",
-          "type": "string",
-          "required": true,
-          "description": " 通貨（現在は BTC のみ対応）"
-        }
-      }
-    },
-    "lend.pendings": {
-      "httpMethod": "GET",
-      "uri": "api/lending/lends",
-      "summary": "貸出を申請しているが、借りたい人がおらず未約定の状態となっている申請一覧を表示します。",
-      "parameters": {
-      }
-    },
-    "lend.cancel": {
-      "httpMethod": "POST",
-      "uri": "api/lending/lend/{id}/cancel",
-      "summary": "注文のキャンセル",
-      "parameters": {
-        "id": {
-          "location": "uri",
-          "type": "string",
-          "required": true,
-          "description": " 未約定の貸出の一覧のID"
-        }
-      }
-    },
-    "lend.matches": {
-      "httpMethod": "GET",
-      "uri": "api/lending/lends/matches",
-      "summary": "注文のキャンセル",
-      "parameters": {
-      }
-    },
     "borrow.create": {
       "httpMethod": "POST",
       "uri": "api/lending/borrows",

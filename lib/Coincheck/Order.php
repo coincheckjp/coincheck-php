@@ -20,12 +20,7 @@ class Order
      */
     public function create($params = array())
     {
-        $arr = array(
-            "rate" => $params["rate"],
-            "amount" => $params["amount"],
-            "order_type" => $params["order_type"],
-            "pair" => $params["pair"]
-        );
+        $arr = $params;
         $rawResponse = $this->client->request('post', 'api/exchange/orders', $arr);
         return $rawResponse;
     }

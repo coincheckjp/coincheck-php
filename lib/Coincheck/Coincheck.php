@@ -23,18 +23,22 @@ class Coincheck
 
     /** @var Order */
     private $order;
+    /** @var Leverage */
+    private $leverage;
+    /** @var Account */
+    private $account;
     /** @var Send */
     private $send;
     /** @var Deposit */
     private $deposit;
-    /** @var Borrow */
-    private $borrow;
-    /** @var Lend */
-    private $lend;
-    /** @var Account */
-    private $account;
     /** @var BankAccount */
     private $bank_account;
+    /** @var Withdraw */
+    private $withdraw;
+    /** @var Borrow */
+    private $borrow;
+    /** @var Transfer */
+    private $transfer;
 
     /**
      * @param array $options API options
@@ -56,17 +60,19 @@ class Coincheck
 
         /** Private API */
         $this->order = new Order($this);
+        $this->leverage = new Leverage($this);
+        $this->account = new Account($this);
         $this->send = new Send($this);
         $this->deposit = new Deposit($this);
-        $this->lend = new Lend($this);
-        $this->borrow = new Borrow($this);
-        $this->account = new Account($this);
         $this->bank_account = new BankAccount($this);
+        $this->withdraw = new Withdraw($this);
+        $this->borrow = new Borrow($this);
+        $this->transfer = new Transfer($this);
     }
 
     public function __get($key)
     {
-        $accessors = array('ticker', 'trade','orderBook', 'order', 'lend', 'borrow', 'send', 'deposit', 'account', 'bank_account');
+        $accessors = array('ticker', 'trade','orderBook', 'order', 'leverage', 'account', 'send', 'deposit', 'bank_account', 'withdraw', 'borrow', 'transfer');
         if (in_array($key, $accessors) && property_exists($this, $key)) {
             return $this->{$key};
         } else {

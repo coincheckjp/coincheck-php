@@ -37,10 +37,23 @@ class BankAccount
      * @return Json Array
      *
      * */
-    public function lists($params = array())
+    public function all($params = array())
     {
         $arr = array();
         $rawResponse = $this->client->request('get', 'api/bank_accounts', $arr);
+        return $rawResponse;
+    }
+
+    /**
+     * Delete a BankAccount.
+     *
+     * @param  mixed
+     * @return Json Array
+     */
+    public function delete($params = array())
+    {
+        $arr = array( "id" => $params["id"] );
+        $rawResponse = $this->client->request('delete', 'api/bank_accounts/' . $arr["id"], $arr);
         return $rawResponse;
     }
 }

@@ -25,6 +25,19 @@ class Account
     }
 
     /**
+     * Make sure a leverage balance.
+     *
+     * @param  mixed
+     * @return Json Array
+     */
+    public function leverage_balance($params = array())
+    {
+        $arr = array();
+        $rawResponse = $this->client->request('get', 'api/accounts/leverage_balance', $arr);
+        return $rawResponse;
+    }
+
+    /**
      * Get account information.
      *
      * @param  mixed
