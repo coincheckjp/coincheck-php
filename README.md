@@ -59,14 +59,12 @@ $coincheck->order->cancel(array("id"=>2953613));
 $coincheck->order->transactions();
 # ポジション一覧
 $coincheck->leverage->positions();
-
 # 残高
 $coincheck->account->balance();
 # レバレッジアカウントの残高
 $coincheck->account->leverage_balance();
 # アカウント情報
 $coincheck->account->info();
-
 # ビットコインの送金
 $coincheck->send->create(array(
     "address" => '1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY',
@@ -74,12 +72,10 @@ $coincheck->send->create(array(
 ));
 # ビットコインの送金履歴
 $coincheck->send->all(array("currency"=>"BTC"));
-
 # ビットコインの受け取り履歴
 $coincheck->deposit->all(array("currency"=>"BTC"));
 # ビットコインの高速入金
 $coincheck->deposit->fast(array("id"=> 2222));
-
 # 銀行口座一覧
 $coincheck->bank_account->all();
 # 銀行口座の登録
@@ -103,7 +99,6 @@ $coincheck->withdraw->create(
 ));
 # 出金申請のキャンセル
 $coincheck->withdraw->cancel();
-
 # 借入申請
 $coincheck->borrow->create(array(
     "amount" => "0.01",
@@ -113,7 +108,6 @@ $coincheck->borrow->create(array(
 $coincheck->borrow->matches();
 # 返済
 $coincheck->borrow->repay(array("id" => "1135"));
-
 # レバレッジアカウントへの振替
 $coincheck->transfer->to_leverage(array(
     "amount" => 100,
