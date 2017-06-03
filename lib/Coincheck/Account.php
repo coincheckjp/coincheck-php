@@ -47,7 +47,7 @@ class Account
     public function info($params = array())
     {
         $arr = array();
-        $rawResponse = $this->client->request('get', 'api/accounts/balance', $arr);
+        $rawResponse = $this->client->request('get', 'api/accounts', $arr);
         return $rawResponse;
     }
 }
