@@ -20,6 +20,8 @@ class Coincheck
     private $trade;
     /** @var OrderBooks */
     private $orderBook;
+    /** @var Rate */
+    private $rate;
 
     /** @var Order */
     private $order;
@@ -57,7 +59,8 @@ class Coincheck
         $this->ticker = new Ticker($this);
         $this->trade = new Trade($this);
         $this->orderBook = new OrderBook($this);
-
+        $this->rate = new Rate($this);
+        
         /** Private API */
         $this->order = new Order($this);
         $this->leverage = new Leverage($this);
@@ -72,7 +75,7 @@ class Coincheck
 
     public function __get($key)
     {
-        $accessors = array('ticker', 'trade','orderBook', 'order', 'leverage', 'account', 'send', 'deposit', 'bank_account', 'withdraw', 'borrow', 'transfer');
+        $accessors = array('ticker', 'trade','orderBook', 'rate', 'order', 'leverage', 'account', 'send', 'deposit', 'bank_account', 'withdraw', 'borrow', 'transfer');
         if (in_array($key, $accessors) && property_exists($this, $key)) {
             return $this->{$key};
         } else {
@@ -87,7 +90,7 @@ class Coincheck
 
     public function setSignature($path, $arr = array())
     {
-        $nonce = time();
+        $nonce = microtime(true) * 10000;
         $url = $this->apiBase.$path;
         $message = $nonce.$url.http_build_query($arr);
         $signature = hash_hmac("sha256", $message, $this->secretKey);
