@@ -87,7 +87,7 @@ class Coincheck
 
     public function setSignature($path, $arr = array())
     {
-        $nonce = time();
+        $nonce = microtime(true) * 10000;
         $url = $this->apiBase.$path;
         $message = $nonce.$url.http_build_query($arr);
         $signature = hash_hmac("sha256", $message, $this->secretKey);
