@@ -106,7 +106,7 @@ class Coincheck
     {
         if($method == 'get' && count($paramData) > 0) {
             $path = $path . '?' . http_build_query($paramData);
-            $paramData=array();
+            $paramData = array();
         }
         $this->setSignature($path, $paramData);
         $req = $this->client->createRequest($method, $path, array());
